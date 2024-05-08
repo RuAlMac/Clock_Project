@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=M1_In1 Pin=MCU-5
+Removed Pin From Net: NetName=M1_In2 Pin=MCU-6
+Removed Pin From Net: NetName=M1_In3 Pin=MCU-7
+Removed Pin From Net: NetName=M1_In4 Pin=MCU-8
+Removed Pin From Net: NetName=M2_In1 Pin=MCU-10
+Removed Pin From Net: NetName=M2_In2 Pin=MCU-11
+Removed Pin From Net: NetName=M2_In3 Pin=MCU-12
+Removed Pin From Net: NetName=M2_In4 Pin=MCU-13
+Added Pin To Net: NetName=M1_In4 Pin=MCU-5
+Added Pin To Net: NetName=M1_In3 Pin=MCU-6
+Added Pin To Net: NetName=M1_In2 Pin=MCU-7
+Added Pin To Net: NetName=M1_In1 Pin=MCU-8
+Added Pin To Net: NetName=M2_In4 Pin=MCU-10
+Added Pin To Net: NetName=M2_In3 Pin=MCU-11
+Added Pin To Net: NetName=M2_In2 Pin=MCU-12
+Added Pin To Net: NetName=M2_In1 Pin=MCU-13
