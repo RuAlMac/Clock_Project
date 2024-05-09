@@ -1,0 +1,33 @@
+Change Component Footprint: Designator=D1 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D2 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D3 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D4 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D5 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D6 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D7 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Footprint: Designator=D8 Old Footprint=HDR1X2 New Footprint=LED
+Change Component Comment : Designator=D1 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D2 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D3 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D4 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D5 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D6 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D7 Old Comment=LED0 New Comment=LED
+Change Component Comment : Designator=D8 Old Comment=LED0 New Comment=LED
+Change component parameters: Designator = "D1" ("D1"); Footprint = "HDR1X2"; UniqueID = "\USDOLRKP" ("\USDOLRKP")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2" ("D2"); Footprint = "HDR1X2"; UniqueID = "\KEDFOQTY" ("\KEDFOQTY")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D3" ("D3"); Footprint = "HDR1X2"; UniqueID = "\VFSMPJLP" ("\VFSMPJLP")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D4" ("D4"); Footprint = "HDR1X2"; UniqueID = "\RGYJQBZI" ("\RGYJQBZI")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D5" ("D5"); Footprint = "HDR1X2"; UniqueID = "\BZSACEML" ("\BZSACEML")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D6" ("D6"); Footprint = "HDR1X2"; UniqueID = "\TKIRMOKN" ("\TKIRMOKN")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D7" ("D7"); Footprint = "HDR1X2"; UniqueID = "\CVJHJKOB" ("\CVJHJKOB")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D8" ("D8"); Footprint = "HDR1X2"; UniqueID = "\VIYVRCFY" ("\VIYVRCFY")
+Change component parameters (AddParameter): Name = "Color"; Value = "Red"; VariantName = "[No Variations]"
+Change Net Name : Old Net Name=NetC?_1 New Net Name=NetD8_2

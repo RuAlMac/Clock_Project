@@ -1,0 +1,8 @@
+Change Component Footprint: Designator=M1 Old Footprint=HDR1X5 New Footprint=JST Female 5pin
+Change Component Footprint: Designator=M2 Old Footprint=HDR1X5 New Footprint=JST Female 5pin
+Change Component Designator: OldDesignator=MCU NewDesignator=*
+Change component parameters: Designator = "M1" ("M1"); Footprint = "HDR1X5"; UniqueID = "\GQHMCVCE" ("\GQHMCVCE")
+Change component parameters: Designator = "M2" ("M2"); Footprint = "HDR1X5"; UniqueID = "\WIQZUZIW" ("\WIQZUZIW")
+Added Member To Class: ClassName=main Member=Component * Arduino Nano
+Added Member To Class: ClassName=main Member=Component M1 Stepper
+Added Member To Class: ClassName=main Member=Component M2 Stepper

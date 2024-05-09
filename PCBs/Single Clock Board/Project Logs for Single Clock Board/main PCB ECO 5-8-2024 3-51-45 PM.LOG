@@ -1,0 +1,11 @@
+Change Component Footprint: Designator=E1 Old Footprint=HDR1X3 New Footprint=SPDT Switch
+Change Component Footprint: Designator=E2 Old Footprint=HDR1X3 New Footprint=SPDT Switch
+Change Component Footprint: Designator=LED_E1 Old Footprint=HDR1X3 New Footprint=SPDT Switch
+Change Component Footprint: Designator=LED_E2 Old Footprint=HDR1X3 New Footprint=SPDT Switch
+Change Component Comment : Designator=LED_E1 Old Comment=Header 3 New Comment=Debug LED Enable
+Change Component Comment : Designator=LED_E2 Old Comment=Header 3 New Comment=Debug LED Enable
+Change Component Designator: OldDesignator=MCU NewDesignator=*
+Change component parameters: Designator = "E1" ("E1"); Footprint = "HDR1X3"; UniqueID = "\SCHRQKHC" ("\SCHRQKHC")
+Change component parameters: Designator = "E2" ("E2"); Footprint = "HDR1X3"; UniqueID = "\YYFTKWIM" ("\YYFTKWIM")
+Change component parameters: Designator = "LED_E1" ("LED_E1"); Footprint = "HDR1X3"; UniqueID = "\SNEHYZDL" ("\SNEHYZDL")
+Change component parameters: Designator = "LED_E2" ("LED_E2"); Footprint = "HDR1X3"; UniqueID = "\MJIXPLBP" ("\MJIXPLBP")

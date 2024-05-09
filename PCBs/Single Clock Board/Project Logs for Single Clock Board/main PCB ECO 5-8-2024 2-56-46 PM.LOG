@@ -1,0 +1,24 @@
+Change Component Footprint: Designator=D1 Old Footprint=LED New Footprint=Small Blue LED
+Change Component Footprint: Designator=D5 Old Footprint=LED New Footprint=Small Blue LED
+Change Component Footprint: Designator=D2 Old Footprint=LED New Footprint=Small Green LED
+Change Component Footprint: Designator=D6 Old Footprint=LED New Footprint=Small Green LED
+Change Component Footprint: Designator=D3 Old Footprint=LED New Footprint=Small Orange LED
+Change Component Footprint: Designator=D7 Old Footprint=LED New Footprint=Small Orange LED
+Change Component Footprint: Designator=D4 Old Footprint=LED New Footprint=Small Yellow LED
+Change Component Footprint: Designator=D8 Old Footprint=LED New Footprint=Small Yellow LED
+Change component parameters: Designator = "D1" ("D1"); Footprint = "LED"; UniqueID = "\WPWEDHEF" ("\WPWEDHEF")
+Change component parameters (AddParameter): Name = "Color"; Value = "Blue"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2" ("D2"); Footprint = "LED"; UniqueID = "\QYKTRBMJ" ("\QYKTRBMJ")
+Change component parameters (AddParameter): Name = "Color"; Value = "Green"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D3" ("D3"); Footprint = "LED"; UniqueID = "\DCKHBKNV" ("\DCKHBKNV")
+Change component parameters (AddParameter): Name = "Color"; Value = "Orange"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D4" ("D4"); Footprint = "LED"; UniqueID = "\NLVDSZKS" ("\NLVDSZKS")
+Change component parameters (AddParameter): Name = "Color"; Value = "Yellow"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D5" ("D5"); Footprint = "LED"; UniqueID = "\XNSDMMND" ("\XNSDMMND")
+Change component parameters (AddParameter): Name = "Color"; Value = "Blue"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D6" ("D6"); Footprint = "LED"; UniqueID = "\ZDCKGWLB" ("\ZDCKGWLB")
+Change component parameters (AddParameter): Name = "Color"; Value = "Green"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D7" ("D7"); Footprint = "LED"; UniqueID = "\BRPZUYTZ" ("\BRPZUYTZ")
+Change component parameters (AddParameter): Name = "Color"; Value = "Orange"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D8" ("D8"); Footprint = "LED"; UniqueID = "\GRFEIPUA" ("\GRFEIPUA")
+Change component parameters (AddParameter): Name = "Color"; Value = "Yellow"; VariantName = "[No Variations]"
