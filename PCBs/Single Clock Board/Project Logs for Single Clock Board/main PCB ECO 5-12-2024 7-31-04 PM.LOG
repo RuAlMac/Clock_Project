@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=M2_In4 Pin=MCU-10
+Removed Pin From Net: NetName=M2_In3 Pin=MCU-11
+Removed Pin From Net: NetName=M2_In2 Pin=MCU-12
+Removed Pin From Net: NetName=M2_In1 Pin=MCU-13
+Added Component: Designator=HS1(Jst Female 3pin)
+Added Component: Designator=HS2(Jst Female 3pin)
+Added Pin To Net: NetName=VCC Pin=HS1-1
+Added Pin To Net: NetName=GND Pin=HS1-2
+Added Pin To Net: NetName=VCC Pin=HS2-1
+Added Pin To Net: NetName=GND Pin=HS2-2
+Added Pin To Net: NetName=M2_In4 Pin=MCU-9
+Added Pin To Net: NetName=M2_In3 Pin=MCU-10
+Added Pin To Net: NetName=M2_In2 Pin=MCU-11
+Added Pin To Net: NetName=M2_In1 Pin=MCU-12
+Added Pin To Net: NetName=Hall_1 Pin=HS1-3
+Added Pin To Net: NetName=Hall_1 Pin=MCU-13
+Added Net: Name=Hall_1
+Added Pin To Net: NetName=Hall_2 Pin=HS2-3
+Added Pin To Net: NetName=Hall_2 Pin=MCU-14
+Added Net: Name=Hall_2
+Added Member To Class: ClassName=main Member=Component HS1 JST Female 3 Pin
+Added Member To Class: ClassName=main Member=Component HS2 JST Female 3 Pin

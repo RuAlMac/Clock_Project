@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=GND Pin=RTC-1
+Removed Pin From Net: NetName=VCC Pin=RTC-2
+Removed Pin From Net: NetName=SDA Pin=RTC-3
+Removed Pin From Net: NetName=SCL Pin=RTC-4
+Change Component Footprint: Designator=RTC Old Footprint=HDR1X6 New Footprint=RTC Module Header Connection
+Change Component Comment : Designator=RTC Old Comment=Header New Comment=Header Connection
+Change component parameters: Designator = "RTC" ("RTC"); Footprint = "HDR1X6"; UniqueID = "\RIOKHHSJ" ("\RIOKHHSJ")
+Added Pin To Net: NetName=SCL Pin=RTC-3
+Added Pin To Net: NetName=SDA Pin=RTC-4
+Added Pin To Net: NetName=VCC Pin=RTC-5
+Added Pin To Net: NetName=GND Pin=RTC-6

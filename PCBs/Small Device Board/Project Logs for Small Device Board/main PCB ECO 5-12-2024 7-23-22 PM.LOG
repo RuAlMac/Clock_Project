@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=VCC Pin=T1-1
+Removed Pin From Net: NetName=GND Pin=T1-2
+Removed Pin From Net: NetName=Signal Pin=T1-3
+Removed Member From Class: ClassName=main Member=T1
+Change Component Footprint: Designator=LED Old Footprint=Small RED LED New Footprint=Small Blue LED
