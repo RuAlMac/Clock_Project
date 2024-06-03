@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=5V_Group1 Pin=5V_Input-1
+Added Pin To Net: NetName=5V_Group1 Pin=5V_Output-1
+Added Pin To Net: NetName=5V_Group1 Pin=5V_Output-2
+Added Net: Name=5V_Group1
+Added Pin To Net: NetName=5V_Group2 Pin=5V_Input-2
+Added Pin To Net: NetName=5V_Group2 Pin=5V_Output-3
+Added Pin To Net: NetName=5V_Group2 Pin=5V_Output-4
+Added Net: Name=5V_Group2

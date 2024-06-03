@@ -1,0 +1,6 @@
+Added Component: Designator=A4(JST VH 3.96mm 4pin Female Connector)
+Added Pin To Net: NetName=GND Pin=A4-1
+Added Pin To Net: NetName=VCC Pin=A4-2
+Added Pin To Net: NetName=SDA Pin=A4-3
+Added Pin To Net: NetName=SCL Pin=A4-4
+Added Member To Class: ClassName=main Member=Component A4 4pin JST 3.96mm

@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=GND Pin=GNDs-2
+Removed Pin From Net: NetName=GND Pin=GNDs-4
+Change Component Designator: OldDesignator=5V_Output NewDesignator=Clus_Pwr_1
+Change Component Designator: OldDesignator=GNDs NewDesignator=Clus_Pwr_2
+Added Pin To Net: NetName=GND Pin=Clus_Pwr_1-1
+Added Pin To Net: NetName=5V Pin=Clus_Pwr_1-2
+Added Pin To Net: NetName=GND Pin=Clus_Pwr_1-3
+Added Pin To Net: NetName=5V Pin=Clus_Pwr_1-4
+Added Pin To Net: NetName=5V Pin=Clus_Pwr_2-2
+Added Pin To Net: NetName=5V Pin=Clus_Pwr_2-4

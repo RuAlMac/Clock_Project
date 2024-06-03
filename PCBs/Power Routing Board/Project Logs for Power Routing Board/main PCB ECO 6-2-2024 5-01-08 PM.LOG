@@ -1,0 +1,12 @@
+Change Component Footprint: Designator=5V_Input Old Footprint=TB00250002BE New Footprint=3pin Screw Terminal
+Change Component Comment : Designator=5V_Input Old Comment=Screw Terminal New Comment=3pin Screw Terminal
+Change component parameters: Designator = "5V_Input" ("5V_Input"); Footprint = "TB00250002BE"; UniqueID = "\RRPLPWXA" ("\RRPLPWXA")
+Added Pin To Net: NetName=5V Pin=5V_Input-1
+Added Pin To Net: NetName=5V Pin=5V_Input-2
+Added Pin To Net: NetName=5V Pin=5V_Input-3
+Added Net: Name=5V
+Added Pin To Net: NetName=Net5V_Output_1 Pin=5V_Output-1
+Added Pin To Net: NetName=Net5V_Output_1 Pin=5V_Output-2
+Added Pin To Net: NetName=Net5V_Output_1 Pin=5V_Output-3
+Added Pin To Net: NetName=Net5V_Output_1 Pin=5V_Output-4
+Added Net: Name=Net5V_Output_1

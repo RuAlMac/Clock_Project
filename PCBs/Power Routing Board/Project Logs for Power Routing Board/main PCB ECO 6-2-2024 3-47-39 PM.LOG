@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=Switched_Live Pin=SWITCH-1
+Removed Pin From Net: NetName=Live Pin=SWITCH-2
+Added Pin To Net: NetName=Live Pin=SWITCH-1
+Added Pin To Net: NetName=Switched_Live Pin=SWITCH-2
