@@ -2,19 +2,19 @@
 G04 Layer_Color=255*
 %FSLAX43Y43*%
 %MOMM*%
-%TF.SameCoordinates,AC333826-6736-4184-BEF3-4D2E4CB995F7*%
+%TF.SameCoordinates,E94A8812-6B35-456A-9080-959166976AA9*%
 %TF.FilePolarity,Positive*%
 %TF.FileFunction,Pads,Bot*%
 %TF.Part,Single*%
 G01*
 G75*
 %TA.AperFunction,ComponentPad*%
-%ADD12C,2.000*%
+%ADD11C,2.000*%
 %TA.AperFunction,ViaPad*%
-%ADD13C,6.000*%
+%ADD12C,6.000*%
 %TA.AperFunction,ComponentPad*%
-%ADD14C,1.950*%
-D12*
+%ADD13C,1.950*%
+D11*
 X55000Y49000D02*
 D03*
 X49920D02*
@@ -49,7 +49,7 @@ Y29210D02*
 D03*
 Y34290D02*
 D03*
-D13*
+D12*
 X4500Y50000D02*
 D03*
 X64000D02*
@@ -58,10 +58,10 @@ Y4500D02*
 D03*
 X4500D02*
 D03*
-D14*
+D13*
 X6985Y23749D02*
 D03*
 Y28749D02*
 D03*
-%TF.MD5,a340cadb1ede7ccbec96c9f517937917*%
+%TF.MD5,07f50bf9fb5dde47a404bde77c11de26*%
 M02*

@@ -1,0 +1,4 @@
+Added Component: Designator=LED(JST FEMALE 2PIN)
+Added Pin To Net: NetName=5V Pin=LED-1
+Added Pin To Net: NetName=GND Pin=LED-2
+Added Member To Class: ClassName=main Member=Component LED JST Female 2 Pin

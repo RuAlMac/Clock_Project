@@ -2,19 +2,19 @@
 G04 Layer_Color=0*
 %FSLAX43Y43*%
 %MOMM*%
-%TF.SameCoordinates,AC333826-6736-4184-BEF3-4D2E4CB995F7*%
+%TF.SameCoordinates,E94A8812-6B35-456A-9080-959166976AA9*%
 %TF.FilePolarity,Positive*%
 %TF.FileFunction,Profile,NP*%
 %TF.Part,Single*%
 G01*
 G75*
 %TA.AperFunction,Profile*%
-%ADD24C,0.025*%
-D24*
+%ADD23C,0.025*%
+D23*
 X0Y0D02*
 Y54500D01*
 X68500D01*
 Y0D01*
 X0D01*
-%TF.MD5,10f1af9063de4194591fad289f697d64*%
+%TF.MD5,3560a85ca5b2278c43fd67d22b38557e*%
 M02*

@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=5V Pin=5V_Input-1
+Removed Pin From Net: NetName=5V Pin=5V_Input-2
+Removed Pin From Net: NetName=5V Pin=5V_Input-3
+Removed Pin From Net: NetName=GND Pin=PWR_IN-3
+Removed Pin From Net: NetName=GND Pin=TO_SUPPLY-1
+Added Pin To Net: NetName=GND Pin=5V_Input-1
+Added Pin To Net: NetName=GND Pin=5V_Input-2
+Added Pin To Net: NetName=GND Pin=5V_Input-3
+Added Pin To Net: NetName=5V Pin=PWR_IN-3
+Added Pin To Net: NetName=5V Pin=TO_SUPPLY-1
+Change Net Name : Old Net Name=5V New Net Name=GND
+Change Net Name : Old Net Name=GND New Net Name=5V

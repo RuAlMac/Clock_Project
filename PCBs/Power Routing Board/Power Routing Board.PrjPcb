@@ -75,7 +75,7 @@ GenerateClassCluster=0
 DocumentUniqueId=MMKMFSLX
 
 [Document3]
-DocumentPath=temp_gerberx2.Cam
+DocumentPath=temp_gerber.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0

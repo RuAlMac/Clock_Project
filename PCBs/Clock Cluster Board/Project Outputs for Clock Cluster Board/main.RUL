@@ -1,0 +1,6 @@
+DRC Rules Export File for PCB: C:\Users\russe\Repositories\Clock_Project\PCBs\Clock Cluster Board\main.PcbDoc
+RuleKind=Width|RuleName=Main Bus Width|Scope=Board|Minimum=31.50
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=15.75
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=10.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

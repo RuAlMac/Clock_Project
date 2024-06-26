@@ -1,0 +1,7 @@
+Added Component: Designator=LED(Jst Female 3pin)
+Added Pin To Net: NetName=GND Pin=LED-1
+Added Pin To Net: NetName=VCC Pin=LED-2
+Added Pin To Net: NetName=DIO7 Pin=LED-3
+Added Pin To Net: NetName=DIO7 Pin=MCU-10
+Added Net: Name=DIO7
+Added Member To Class: ClassName=main Member=Component LED LED Relay

@@ -75,7 +75,7 @@ GenerateClassCluster=0
 DocumentUniqueId=RCUEJXBD
 
 [Document3]
-DocumentPath=gerberX2_files.Cam
+DocumentPath=temp_gerber.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -92,7 +92,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document4]
-DocumentPath=nc_drill_files.Cam
+DocumentPath=temp_ncdrill.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
