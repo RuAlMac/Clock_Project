@@ -17,4 +17,5 @@ void printMessage(int message) {
       Serial.print("Stepper 2 homed.");
       break;
   }
+  Serial.print("");
 }

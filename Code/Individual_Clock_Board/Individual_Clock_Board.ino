@@ -11,9 +11,13 @@
       https://github.com/NikodemBartnik/ArduinoTutorials/tree/master
 */
 
+//**************UNIQUE SETTINGS FOR EACH BOARD**************
+#define boardAddress 24
+//**********************************************************
+
 //I2C
 #include <Wire.h>
-volatile int i2c_message = 0;
+volatile byte i2c_message = 1;
 
 //Stepper Motor Characteristics
 int stepsInRev = 2048;
@@ -49,10 +53,12 @@ void setup() {
   printMessage(1);
 
   //I2C Initialization
-  Wire.begin(0xA1); //slave address A1
+  Wire.begin(boardAddress); //slave address 1
+  Wire.onReceive(receiveEvent);
+  Wire.onRequest(requestEvent);
 
   //pinMode initialization
-  pinMode(stepper_1_in1, OUTPUT);
+  /*pinMode(stepper_1_in1, OUTPUT); *********INACTIVE FOR NOW
   pinMode(stepper_1_in2, OUTPUT);
   pinMode(stepper_1_in3, OUTPUT);
   pinMode(stepper_1_in4, OUTPUT);
@@ -67,9 +73,16 @@ void setup() {
 
   //Begin setup code
   
-  homeSteppers();
+  homeSteppers(); */
 }
 
 void loop() {
-  //
+  /*
+   * #define orientation 0
+
+/*  Orientation Chart:
+ *      [0   1] <--Clock segment
+ *      [2   3]
+ *      [4   5]
+ */
 }

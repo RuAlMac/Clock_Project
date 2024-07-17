@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=+5V Pin=+5V_Connection-1
+Removed Pin From Net: NetName=+5V Pin=+5V_Connection-2
+Removed Pin From Net: NetName=+5V Pin=+5V_Connection-3
+Added Component: Designator=F1(Blade Fuse [Mini])
+Added Pin To Net: NetName=+5V Pin=F1-2
+Added Pin To Net: NetName=+5V_unfused Pin=+5V_Connection-1
+Added Pin To Net: NetName=+5V_unfused Pin=+5V_Connection-2
+Added Pin To Net: NetName=+5V_unfused Pin=+5V_Connection-3
+Added Pin To Net: NetName=+5V_unfused Pin=F1-1
+Added Net: Name=+5V_unfused
+Added Member To Class: ClassName=main Member=Component F1 Blade Fuse [Mini]

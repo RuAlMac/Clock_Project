@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=5V_Input NewDesignator=+5V_Connection
+Added Component: Designator=-5V_Connection(3pin Screw Terminal)
+Added Pin To Net: NetName=-5V Pin=-5V_Connection-1
+Added Pin To Net: NetName=-5V Pin=-5V_Connection-2
+Added Pin To Net: NetName=-5V Pin=-5V_Connection-3
+Added Member To Class: ClassName=main Member=Component -5V_Connection 3pin Screw Terminal
