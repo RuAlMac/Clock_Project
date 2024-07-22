@@ -1,4 +1,19 @@
 void receiveEvent() {
+  while (Wire.available()) { //receivedMessage array is always updated when a message is received
+    receivedMessage[i] = Wire.read();
+    i = i + 1;
+  }
+
+  if (homingComplete == true) {
+    acceptNewMessage();
+  }
+  else {
+    Serial.print("\n\n[!] Homing sequence incomplete; ignored message: ");
+    Serial.print(receivedMessage);
+  }
+}
+
+void acceptNewMessage() {
   int i = 0;
 
   Serial.print("\n\n\t[@] Local receiveEvent triggered:");
@@ -9,11 +24,6 @@ void receiveEvent() {
   Serial.print("> at Position <");
   Serial.print(pos);
   Serial.print(">");
-
-  while (Wire.available()) {
-    receivedMessage[i] = Wire.read();
-    i = i + 1;
-  }
 
   Serial.print("\n\t\t[>] Received message: ");
   Serial.print(receivedMessage);
@@ -42,6 +52,8 @@ void receiveEvent() {
 
     case '1': //Display mode update (digital or analog)
       Serial.print("Display mode update\n\t\t");
+
+      homeSteppers();
 
       switch (receivedMessage[2]) { //0_1000
         case '0': //digital

@@ -5,9 +5,10 @@ void homeSteppers() {
   while (digitalRead(hall_sensors[0]) != LOW) { //hall effect sensors return 'low' if there IS a magnet nearby
     stepOnce(false, 'm', 2);
   }
-  step_nums[0] = 0;
-  step_counts[0] = 0;
-  startStepAngle[0] = 0;
+  step_nums[0] = 0;     //Used in stepOnce function
+  step_counts[0] = 0;   //Used in stepOnce function
+  currentPos[0] = 0;    //Used in digital display mode functions
+  minPosition[0] = 0;   //Used in analog display mode functions
   quitMotor(true, 'm');
   Serial.print("\n\t\t[*] Stepper 1 homed.");
 
@@ -15,9 +16,10 @@ void homeSteppers() {
   while (digitalRead(hall_sensors[1]) != LOW) {
     stepOnce(false, 'h', 2);
   }
-  step_nums[1] = 0;
-  step_counts[1] = 0;
-  startStepAngle[1] = 0;
+  step_nums[1] = 0;     //Used in stepOnce function
+  step_counts[1] = 0;   //Used in stepOnce function
+  currentPos[1] = 0;    //Used in digital display mode functions
+  hourPosition[0] = 0;  //Used in analog display mode functions
   quitMotor(true, 'h');
   Serial.print("\n\t\t[*] Stepper 2 homed.");
 
@@ -51,6 +53,49 @@ void quitMotor(bool flash, char motor) { //should be called when a certain motor
       }
       break;
   }
+}
+
+void moveSteppers(int mx, int hx, int stepDirM, int stepDirH, int movementScheme) { //used for both Steppers_Analog and Steppers_Digital functions
+  Serial.print("\n\t\t[*] Movement Scheme: ");
+  //*****Movement schemes*****
+  switch (movementScheme) {
+    case 1: //Moving synchronously (minute steps once, then hour, then min, etc.)
+      Serial.print("Synchronous");
+      Serial.print("\n\t\t\tmx = ");
+      Serial.print(mx);
+      Serial.print("\thx = ");
+      Serial.print(hx);
+
+      while ((mx != 0) || (hx != 0)) { //while steps remain for either minute or hour stepper
+
+        if (mx != 0) { //if steps remain for minute stepper
+          stepOnce(!stepDirM, 'm', 2); //arguments: direction, stepper, delay in ms; Note that the stepDir for the minutes stepper is noted b/c min step is rotated 180 deg to hour step in the mech baseplate
+          mx = mx - 1;
+        }
+
+        if (hx != 0) { //if steps remain for hour stepper
+          stepOnce(stepDirH, 'h', 2);
+          hx = hx - 1;
+        }
+      }
+      break;
+
+    case 2: //Moving asychnronously (minute does all its stepping, then hour does its stepping)
+      Serial.print("(Asynchronous Movement)");
+      while (mx != 0) {
+        stepOnce(stepDirM, 'm', 2); //arguments: direction, stepper, delay in ms
+        mx = mx - 1;
+      }
+
+      while (hx != 0) {
+        stepOnce(stepDirH, 'h', 2); //arguments: direction, stepper, delay in ms
+        hx = hx - 1;
+      }
+      break;
+  }
+
+  quitMotor(true, 'm');
+  quitMotor(true, 'h');
 }
 
 void stepOnce(bool dir, char selectedStepper, int stepDelay) {

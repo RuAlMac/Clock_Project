@@ -18,7 +18,7 @@
 */
 
 //**************UNIQUE SETTINGS FOR EACH BOARD**************
-#define boardAddress     35   //address in decimal
+#define boardAddress     34   //address in decimal
 //**********************************************************
 
 //~~~~~~~~~~~~~~~~~~Constants~~~~~~~~~~~~~~~~~~
@@ -45,8 +45,9 @@ bool homingComplete = false;    //used to track if homing sequence was completed
 int step_nums[2] = {0, 0};      //NOT A COUNT OF TOTAL STEPPER STEPS! Used to count in fours to determine next appropriate step type
 int step_counts[2] = {0, 0};    //Used to track position of steppers, should be reset to 0 during homing sequence
 
-int startStepAngle[2];          //Stores the angle to which a stepper is currently pointing
-int endStepAngle[2];            //Stores the angle at which a stepper must point when a new digit is received
+int newAngle[2];                //updated by getNewAngle function
+int currentPos[2] = {0,0};      //stores where steppers currently are
+int newPos[2] = {0,0};            //stores where steppers must be moved to
 
 //These capitalized variables are used in the stepOnce function
 int STEP_NUMBER;
