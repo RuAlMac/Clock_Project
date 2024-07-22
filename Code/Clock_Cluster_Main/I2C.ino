@@ -65,129 +65,112 @@ int printClockStatuses() {
   Serial.print("\n");
 }
 
-void sendClockUpdate() {
-  int timeSend[] = {0, 0, 0, 0};
+void sendSysUpdate(int sysUpdateType) { //This function will handle all transmissions to Individual Clock Boards and the other Clock Cluster Boards, except for retrieving status information during init
 
-  timeSend[0] = hour0 / 10;   //Seg A
-  timeSend[1] = hour0 % 10;   //Seg B
-  timeSend[2] = minute0 / 10; //Seg C
-  timeSend[3] = minute0 % 10; //Seg D
+  Serial.print("\n\t[!] sendSysUpdate function called");
+  Serial.print("\n\t\t[*] Update type: ");
 
+  //Creating local variables used in this function
+  int newTime[] = {0, 0, 0, 0};
 
-  if (frozen == false) {
+  char message[7] = {'5', '_', '5', '5', '5', '5'}; //a string of characters, with an extra value for the '\0' string terminator
+  //Format: "0_1624" (0=update type, 1624=new time); "1_0000" (1=update type, 0000=digital mode); "1_1000" (1=update type, 1000=analog mode); "2_0000" (2=update type, 0000=unfrozen); etc.
 
-    //Send to Clock Cluster Boards (except to itself)
-    int i = 50;
-    while (i != 0) {
-      Wire.beginTransmission(i);
-      switch (i) {
-        case 50:
-          Wire.write(timeSend[0]);
-          i = 51;
+  switch (sysUpdateType) { //prepare message string to be sent based on sysUpdateType
+    case 0: //time update
+      Serial.print("(0) Time update");
+      //get new time values
+      newTime[0] = hour0 / 10;   //Seg A
+      newTime[1] = hour0 % 10;   //Seg B
+      newTime[2] = minute0 / 10; //Seg C
+      newTime[3] = minute0 % 10; //Seg D
+
+      message[0] = '0'; //set message type
+      message[2] = newTime[0] + '0'; //converts value in newTime to a character
+      message[3] = newTime[1] + '0';
+      message[4] = newTime[2] + '0';
+      message[5] = newTime[3] + '0';
+      break;
+
+    case 1: //display mode update
+      message[0] = '1'; //set message type
+      Serial.print("(1) Display mode (digital or analog)");
+
+      switch (analogMode) {//toggles existing value first
+        case false:
+          Serial.print("\n\t\t[$] New clock mode: Analog");
+          analogMode = true;    //Switching to analog mode
+          message[2] = '1'; //display mode: analog
           break;
-        case 51:
-          Wire.write(timeSend[1]);
-          i = 53;
-          break;
-        case 53:
-          Wire.write(timeSend[3]);
-          i = 0;
+        case true:
+          Serial.print("\n\t\t[$] New clock mode: Digital");
+          analogMode = false;   //Switching to digital mode
+          message[2] = '0'; //display mode: analog
           break;
       }
-      Wire.endTransmission();
-    }
 
-    //Send to all Individual Clock Boards
-    i = 0;
-    while (i <= 37) {
-      Wire.beginTransmission(i);
+      message[3] = '0';
+      message[4] = '0';
+      message[5] = '0';
+      
+      updateSysStatuses();
+      break;
 
-      if (i < 10) {
-        Wire.write(timeSend[0]);
-      }
-      else if (i < 20) {
-        Wire.write(timeSend[1]);
-      }
-      else if (i < 30) {
-        Wire.write(timeSend[2]);
+    case 2: //frozen mode update
+      message[0] = '2'; //set message type
+      Serial.print("(2) Frozen/Unfrozen");
+
+      if (frozen) {
+        frozen = false;
+        Serial.print("\n\t\t[$] Clock unfrozen");
+        message[2] = '0'; //indicates UNFROZEN
+        playTone(100, 500); //duration in ms, freq in Hz
+        delay(100);
+        playTone(100, 500); //duration in ms, freq in Hz
       }
       else {
-        Wire.write(timeSend[3]);
+        frozen = true;
+        Serial.print("\n\t\t[$] Clock frozen");
+        message[2] = '1'; //indicates FROZEN
+        playTone(250, 1000); //duration in ms, freq in Hz
+        delay(100);
+        playTone(250, 1000); //duration in ms, freq in Hz
       }
 
-      Wire.endTransmission();
-
-      i = i + 1;
-      switch (i) {
-        case 8:
-          i = 10;
-          break;
-        case 18:
-          i = 20;
-          break;
-        case 28:
-          i = 30;
-          break;
-      }
-    }
-  }
-}
-
-void toggleDigitalAnalog() {
-  int i = 0;
-  int m = 0;
-
-  switch (analogMode) {
-    case false:
-      Serial.print("\n\t\t[$] New clock mode: Analog");
-      analogMode = true;    //Switching to analog mode
-      m = 40;               //m==40 indicates analog mode
-      break;
-    case 1:
-      Serial.print("\n\t\t[$] New clock mode: Digital");
-      analogMode = false;   //Switching to digital mode
-      m = 30;               //m==30 indicates digital mode
+      message[3] = '0';
+      message[4] = '0';
+      message[5] = '0';
+      
+      updateSysStatuses();
       break;
   }
 
-  updateSysStatuses();  //LCD function, prints "D" or "A" depending on analogMode
+  Serial.print("\n\t\t[*] Message Array: ");
+  Serial.print(message);
 
-  //Send to all Individual Clock Boards
-  Serial.print("\n\t\t[$] Sending new clock mode to all Individual Clock Boards");
-  i = 0;
-  while (i <= 37) {
+  //Sending message
+  int i = 0; //Target Individual Clock Boards first
+  while (i < 38) {
     Wire.beginTransmission(i);
-    Wire.write(m);
+    Wire.write(message);
     Wire.endTransmission();
 
     i = i + 1;
-    switch (i) {
-      case 8:
-        i = 10;
-        break;
-      case 18:
-        i = 20;
-        break;
-      case 28:
-        i = 30;
-        break;
+  }
+
+  i = 50; //Then target Clock Cluster Boards
+  while (i < 54) {
+    Wire.beginTransmission(i);
+    Wire.write(message);
+    Wire.endTransmission();
+
+    i = i + 1;
+
+    if (i == 52) { //skip Board 52 (is this board)
+      i = 53;
     }
-  }
-}
 
-void toggleFrozen() {
-  if (frozen) {
-    frozen = false;
-    playTone(250, 500); //duration in ms, freq in Hz
-    delay(100);
-    playTone(250, 500); //duration in ms, freq in Hz
-  }
-  else {
-    frozen = true;
-    playTone(250, 1000); //duration in ms, freq in Hz
-    delay(100);
-    playTone(250, 1000); //duration in ms, freq in Hz
   }
 
-  updateSysStatuses();
+  Serial.print("\n\t\t[!] Message sent\n");
 }

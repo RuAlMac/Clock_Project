@@ -63,34 +63,27 @@ char decodeIR() {
     }
 
     key_value = results.value;
-    irrecv.resume();
 
     //The following code determines if an input signal is considered valid
 
     if (receivedVal0 == '?') { //Check 1: Bypass following checks if an unidentified signal is received.
+      irrecv.resume();
       return '?';
     }
 
-    if (receivedVal0 != receivedVal1) { //Check 2: Check if a new input is different from the previous input. Valid if different.
-      Serial.print("\n\t[>] IR Signal Received: ");
-      Serial.print("[");
-      Serial.print(receivedVal0);
-      Serial.print("]");
+    if (millis() - lastPressTime > irDebounceDelay) { //Check 2: debounce delay
 
-      receivedVal1 = receivedVal0;
-    }
-    else { //Check 3: If same input, freeze program for time defined by irRegDelay. Delete value in receivedVal1, then allow program to keep running. A repeated input will then be accepted once. If received twice, this will apply again.
-      time1 = time0 + irRegDelay;
-      Serial.print("\n\t[!] Repeat IR Signal; program frozen for ");
-      Serial.print(irRegDelay);
-      Serial.print("ms. receivedVal1 value deleted.");
-      while (time0 < time1) {
-        time0 = millis();
-        //do nothing
+      while (irrecv.decode(&results)) { //do nothing until no new IR signal received
+        delay(10);
+        irrecv.resume();
       }
-      receivedVal1 = '?';
+
+      lastPressTime = millis(); // Update the time when the button was last pressed
+
+      irrecv.resume();
+      return receivedVal0;  //return receivedVal0 if an IR signal is received after an appropriate debounce time
     }
-    return receivedVal0;  //return receivedVal0 if a valid IR signal is received
   }
+
   return '?';   //return '?' if no IR signal is received
 }

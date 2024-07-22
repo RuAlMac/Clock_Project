@@ -20,10 +20,10 @@
 //**************UNIQUE SETTINGS FOR THIS BOARD**************
 #define boardAddress    52    //address in decimal
 #define initDelay       5     //time in seconds given to Individual Clock Boards to home steppers before status check
-#define irRegDelay      500   //we'll see
 #define maxInitCnt      2     //how many times initialization can be attempted before fatal error #01
 #define clockCheckDelay 450   //time in milliseconds between RTC checks, should be less than 1 second for optimal operation
-#define irCheckDelay    20    //time in milliseconds that system rests before requesting an IR signal update from Board 51
+#define irCheckDelay    20    //time in milliseconds that system rests before checking if the IR sensor has detected a signal
+#define irDebounceDelay 800  //debounce time for IR signal inputs
 #define overrideInitChk true  //for debugging purposes; if true, program ignores errors reported by Individual Clock Boards, SHOULD BE FALSE FOR NORMAL OPERATION
 #define forceClockSet   false //for debugging purposes; program will only program RTC; this must be then set to false and reuploaded, see "Forced Time Set" section below
 //**********************************************************
@@ -90,29 +90,32 @@ const int dataPin = 2;
 const int relayPin = 7;
 
 //Buzzer
-#include <toneAC.h>
-//Buzzer must be wired to pins 11 and 12 on Mega
+#include <TimerFreeTone.h>
+int buzzerPin = 8;
 
 //also using built-in LED
 
 //Variables
 volatile int clockStatus[24] = {};     //Array storing statuses of each Individual Clock Board
-unsigned long time0 = 0;      //millis raw value
-unsigned long time1 = 0;      //value for use in if statements
-unsigned long time2 = 0;      //value for use in other features
-int timeRemaining = 0;        //timer value
-int initCount = 0;            //counts how many times initialization has been attempted
-volatile int tempStorage = 0; //used to ensure initCount variable is accurate b/c initCount variable is being a prissy litte bitch and I don't fucking know why it's so screwy fml
-bool errorsPresent;           //used during system init, false only if all Individual Clock Boards report no errors at init
-char irSignal;                //stores the value of an IR signal received by the Clock_Cluster_IR board
-bool keepLoop = false;        //for use in while loops that incorporate switch case operations, for simplicity
-bool analogMode = false;      //indicates which display mode Individual Clock Boards should use; false=analog, true=digital
-bool frozen = false;          //freezes or unfreezes clock updates
+unsigned long time0 = 0;        //millis raw value
+unsigned long time1 = 0;        //value for use in if statements
+unsigned long time2 = 0;        //value for use in other features
+unsigned long lastPressTime;    //stores the time when an IR button press was detected
+int timeRemaining = 0;          //timer value
+int initCount = 0;              //counts how many times initialization has been attempted
+volatile int tempStorage = 0;   //used to ensure initCount variable is accurate b/c initCount variable is being a prissy litte bitch and I don't fucking know why it's so screwy fml
+bool errorsPresent;             //used during system init, false only if all Individual Clock Boards report no errors at init
+char irSignal;                  //stores the value of an IR signal received by the Clock_Cluster_IR board
+bool keepLoop = false;          //for use in while loops that incorporate switch case operations, for simplicity
+bool analogMode = false;        //indicates which display mode Individual Clock Boards should use; false=analog, true=digital
+bool frozen = false;            //freezes or unfreezes clock updates
 
-int selectedToEdit;           //used for time setting only; selectedToEdit=0 means hours are edited, selectedToEdit=1 means minutes are edited
-int loadedVal;                //used to store value for by how much the hour or minute value is to be modified in time setting mode
+int selectedToEdit;             //used for time setting only; selectedToEdit=0 means hours are edited, selectedToEdit=1 means minutes are edited
+int selectedOperation = 1;      //used to store which operation will be used in adjusting set time (0=subtraction, 1=addition)
+char loadedVal[2] = {'?', '?'}; //used to store value for by how much the hour or minute value is to be modified in time setting mode
+int loadedValInt;               //used to store value of loadedVal[] in an integer format for arithmatic purposes
 
-int errorCode;                //for use in reporting fatal errors
+int errorCode;                  //for use in reporting fatal errors
 /* Error Codes
    01: Number of system initializations exceeds allowed (error likely due to stepper homing failure on 1+ Individual Clock Boards
    02: RTC not running (likely due to poor connection between I2C bus and RTC module, maybe RTC battery died)
@@ -236,14 +239,14 @@ void loop() {
           }
           break;
         case false:
-          Serial.print("False\n");
+          Serial.print("False\n\n");
           mode = 2;
           break;
       }
       break;
 
     case 2:
-      Serial.print("[+] Mode 2: Normal Standby Mode (Analog/Digital, Freeze/Unfreeze)");
+      Serial.print("[+] Mode 2: Normal Standby Mode (Timekeeping, Analog/Digital, Freeze/Unfreeze)");
       printLCD(1);
       keepLoop = true;
 
@@ -259,22 +262,23 @@ void loop() {
         if ( (irSignal != '?') && (irSignal != ' ') ) {
           switch (irSignal) { //checks if new IR signal has been received
             case '*': //toggle lighting
-              Serial.print("\n\tMode 2, IR action '*': Toggle lighting");
+              Serial.print("\n\t[>] Mode 2, IR action '*': Toggle lighting");
               toggleRelay(); //toggleRelay() contains a call to playTone()
               break;
             case '#': //go to clock setting mode
+              Serial.print("\n\t[>] Mode 2, IR action '#': Enter clock setting mode\n");
               mode = 3;
-              playTone(1000, 250);
+              playTone(500, 250);
               keepLoop = false;
               break;
             case 'w':  //toggle between digital and analog modes
-              Serial.print("\n\tMode 2, IR action 'w': Toggle between Analog / Digital Setting");
-              toggleDigitalAnalog();
+              Serial.print("\n\t[>] Mode 2, IR action 'w': Toggle between Analog / Digital Setting");
+              sendSysUpdate(1); //update type 1: toggle between digital & analog modes
               playTone(500, 500); //duration in ms, freq in Hz
               break;
             case 's': //freeze clock
-              Serial.print("\n\tMode 2, IR action 's': Freeze clock");
-              toggleFrozen(); //toggleFrozen() contains calls to playTone()
+              Serial.print("\n\t[>] Mode 2, IR action 's': Freeze clock");
+              sendSysUpdate(2); //update type 2: toggle between frozen and unfrozen
               break;
           }
           irSignal = '?';
@@ -310,54 +314,107 @@ void loop() {
       //The below code will execute in normal operation
       Serial.print(" [Normal Operation]");
 
-      printLCD(1);
+      printLCD(3);
+      updateEditPlan();
       keepLoop = true;
 
-      activeSeg = 'a';
       while (keepLoop) {
         irSignal = decodeIR();
 
         if ( (irSignal != '?') && (irSignal != ' ') ) {
           switch (irSignal) { //checks if new IR signal has been received
             case '*': //toggle lighting
-              Serial.print("\n\tMode 3, IR action '*': Toggle lighting");
+              Serial.print("\n\t[>] Mode 3, IR action '*': Toggle lighting");
               toggleRelay(); //toggleRelay() contains a call to playTone()
               break;
 
             case '#': //exit clock setting mode
               mode = 2;
-              playTone(1000, 250);
+              playTone(500, 250); //duration in ms, freq in Hz
+              Serial.print("\n\t[>] Mode 3, IR action '#': Exit clock setting mode\n");
               keepLoop = false;
+              break;
+
+            case 'w': //operation: add
+              Serial.print("\n\t[&] Operation selected: addition");
+              playTone(100, 250); //duration in ms, freq in Hz
+              selectedOperation = 1;
+              updateEditPlan();
+              break;
+
+            case 's': //operation: subtract
+              Serial.print("\n\t[&] Operation selected: subtraction");
+              playTone(100, 250); //duration in ms, freq in Hz
+              selectedOperation = 0;
+              updateEditPlan();
               break;
 
             case 'a': //choose to modify hour value
               Serial.print("\n\t[&] Hours selected to be modified");
+              playTone(100, 250); //duration in ms, freq in Hz
               selectedToEdit = 0;
-              loadedVal = 0;
+              updateEditPlan();
               break;
 
             case 'd': //choose to modify minute value
               Serial.print("\n\t[&] Minutes selected to be modified");
+              playTone(100, 250); //duration in ms, freq in Hz
               selectedToEdit = 1;
-              loadedVal = 0;
+              updateEditPlan();
               break;
 
             case '=': //confirm change to hour or minute value
+              playTone(500, 250); //duration in ms, freq in Hz
               getTime();
 
-              Serial.print("\n\t[!] Confirmed time change; added <");
-              Serial.print(loadedVal);
-              Serial.print("> to ");
-              if (selectedToEdit == 0) {
-                Serial.print("<hour value>");
-                hour1 = hour0 + loadedVal;
-                RTC.setHours(hour1);
+              Serial.print("\n\t[!] Confirmed time change; input time change plan:");
+              Serial.print("\n\t\t[*] Adjust ");
+
+              //Step 1: Convert value in loadedVal[] array to an integer (stored in loadedValInt)
+              loadedValInt = 0;
+
+              if (loadedVal[0] != '?') {
+                loadedValInt = (loadedVal[0] - '0') * 10;
               }
-              else {
-                Serial.print("<minute value>");
-                minute1 = minute0 + loadedVal;
-                RTC.setMinutes(minute1);
+
+              if (loadedVal[1] != '?') {
+                loadedValInt = loadedValInt + (loadedVal[1] - '0');
               }
+
+              //Step 2: Make loadedValInt value negative if needed
+              if (selectedOperation == 0) { //if subtraction selected as operator
+                loadedValInt = loadedValInt * (-1);
+              }
+
+              //Step 3: Compute new hour or minute (depending on selectedToEdit variable)
+              if (selectedToEdit == 0) { //hours
+                Serial.print("<hour>");
+                hour1 = hour0 + loadedValInt;
+                checkIfValid(0);
+              }
+
+              if (selectedToEdit == 1) { //minutes
+                Serial.print("<minute>");
+                minute1 = minute0 + loadedValInt;
+                checkIfValid(0);
+              }
+
+              if (loadedValInt > 0) {
+                Serial.print("+");
+              }
+
+              Serial.print(" by <");
+              Serial.print(loadedValInt);
+              Serial.print(">");
+
+              //Step 4: Update time
+              RTC.setDay(day);
+              RTC.setHours(hour1);
+              RTC.setMinutes(minute1);
+
+              Serial.print("\n\t\t[*] New date/time:");
+              printTimeSerial(getTime());
+
 
               mode = 2;
               keepLoop = false;
@@ -367,17 +424,27 @@ void loop() {
               int z = irSignal - '0'; //converts value stored in irSignal to an int
 
               if ((z >= 0) && (z <= 9)) { //only executes code if an integer value of 0 <= x <= 9 is stored in z
-                loadedVal = z;
-                Serial.print("\n\t[&] Add <");
-                Serial.print(loadedVal);
-                Serial.print("> to ");
-
-                if (selectedToEdit == 0) {
-                  Serial.print("<hour> value; awaiting confirmation");
+                playTone(100, 250); //duration in ms, freq in Hz
+                if ( (loadedVal[0] == '?') && (loadedVal[1] == '?') ) {   //loadedVal[] stores value as tens, ones
+                  //loadedVal[0] still is '?'
+                  loadedVal[1] = irSignal;
+                  Serial.print("\n\t[&] Current value set to: [0");
+                  Serial.print(z);
+                  Serial.print("]");
                 }
-                else {
-                  Serial.print("<minute> value; awaiting confirmation");
+                else if ( (loadedVal[0] == '?') && (loadedVal[1] != '?') ) {
+                  loadedVal[0] = irSignal;
+                  Serial.print("\n\t[&] Current value set to: [");
+                  Serial.print(z);
+                  Serial.print(loadedVal[1] - '0');
+                  Serial.print("]");
                 }
+                else if ( (loadedVal[0] != '?') && (loadedVal[1] != '?') ) {
+                  loadedVal[1] = '?';
+                  loadedVal[0] = '?';
+                  Serial.print("\n\t[&] Current value reset");
+                }
+                updateEditPlan();
               }
               break;
 

@@ -1,0 +1,52 @@
+Change Component Footprint: Designator=R1 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R2 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R4 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R5 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R6 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R7 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R9 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Change Component Footprint: Designator=R10 Old Footprint=Axial Resistor New Footprint=AXIAL-0.3
+Added Component: Designator=Buzzer(JST FEMALE 2PIN)
+Added Component: Designator=J1(TE_1-1761681-3)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "1-1761681-3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=LCD(JST Female 4pin)
+Added Component: Designator=R11(AXIAL-0.3)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=Buzzer-2
+Added Pin To Net: NetName=SCL Pin=J1-7
+Added Pin To Net: NetName=Reset Pin=J1-8
+Added Pin To Net: NetName=SDA Pin=J1-9
+Added Pin To Net: NetName=VCC Pin=J1-12
+Added Pin To Net: NetName=GND Pin=J1-14
+Added Pin To Net: NetName=DIO7 Pin=J1-25
+Added Pin To Net: NetName=DIO6 Pin=J1-27
+Added Pin To Net: NetName=DIO5 Pin=J1-29
+Added Pin To Net: NetName=DIO4 Pin=J1-31
+Added Pin To Net: NetName=DIO3 Pin=J1-33
+Added Pin To Net: NetName=DIO2 Pin=J1-35
+Added Pin To Net: NetName=GND Pin=LCD-1
+Added Pin To Net: NetName=VCC Pin=LCD-2
+Added Pin To Net: NetName=SDA Pin=LCD-3
+Added Pin To Net: NetName=SCL Pin=LCD-4
+Added Pin To Net: NetName=DIO8 Pin=J1-23
+Added Pin To Net: NetName=DIO8 Pin=MCU-11
+Added Pin To Net: NetName=DIO8 Pin=R11-1
+Added Net: Name=DIO8
+Added Pin To Net: NetName=NetBuzzer_1 Pin=Buzzer-1
+Added Pin To Net: NetName=NetBuzzer_1 Pin=R11-2
+Added Net: Name=NetBuzzer_1
+Added Member To Class: ClassName=main Member=Component Buzzer JST Female 2 Pin
+Added Member To Class: ClassName=main Member=Component J1 Mega Conn
+Added Member To Class: ClassName=main Member=Component LCD LCD Display Conn
+Added Member To Class: ClassName=main Member=Component R11 Res1

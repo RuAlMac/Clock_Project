@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=GND Pin=Buzzer-2
+Added Pin To Net: NetName=GND Pin=Buzzer-1
+Added Pin To Net: NetName=NetBuzzer_2 Pin=Buzzer-2
+Added Pin To Net: NetName=NetBuzzer_2 Pin=R11-2
+Added Net: Name=NetBuzzer_2

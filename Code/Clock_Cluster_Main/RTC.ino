@@ -120,13 +120,12 @@ void checkRTC() {
   //**Hour Updates**
   if (hour1 != hour0) {
     printTimeLCD(2);
-    sendClockUpdate(); //*****this function sends the new time to all Individual Clock Boards
   }
 
   //**Minute Updates**
   if (minute1 != minute0) {
     printTimeLCD(3);
-    sendClockUpdate(); //*****this function sends the new time to all Individual Clock Boards
+    sendSysUpdate(0); //update type 0: time update, no need to include a timeUpdate for changes in hours because a minute change will already cover it (ex. change from 18:59 to 19:00 includes a minute change and an hour change)
   }
 
   //**Second Updates**
@@ -176,6 +175,46 @@ void printTimeLCD(int x) {
         lcd.print("0");
       }
       lcd.print(second0);
+      break;
+  }
+}
+
+void checkIfValid(int timeAspect) { //timeAspect==0 is hour, timeAspect==1 is minute
+  switch (timeAspect) {
+    case 0:
+      while (1) {
+        if (hour1 >= 24) {
+          hour1 = hour1 - 24;
+          day = day + 1;
+        }
+
+        if (hour1 < 0) {
+          hour1 = hour1 + 24;
+          day = day - 1;
+        }
+
+        if ( (hour1 >= 0) && (hour1 < 24) ) { //valid hour
+          break;
+        }
+      }
+      break;
+
+    case 1:
+      while (1) {
+        if (minute1 > 59) {
+          minute1 = minute1 - 59;
+          hour1 = hour1 + 1;
+        }
+
+        if (minute1 < 0) {
+          minute1 = minute1 + 59;
+          hour1 = hour1 - 1;
+        }
+
+        if ( (minute1 >= 0) && (minute1 <= 59) ) { //valid minute
+          break;
+        }
+      }
       break;
   }
 }

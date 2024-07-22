@@ -40,10 +40,10 @@ void printLCD(int message) {
       lcd.print("No Normal Operat");
       break;
 
-      case 3:
+    case 3:
       lcd.print(" [3]: Set Time  ");
-      lcd.setCursor(0,1);
-      lcd.print("  <    > <   >  "); //Format: "  <Hour> <+10>  ", "  <Min > <-05>  "
+      lcd.setCursor(0, 1);
+      lcd.print("<    > < > <  > "); //Format: "<Hour> <+> <05> ", "<Min > <-> <10> "
       break;
   }
 }
@@ -79,12 +79,51 @@ void updateSysStatuses() { //updates LCD display on Mode 2 to indicate that digi
       break;
   }
 
-  switch (frozen){
+  switch (frozen) {
     case true:
-    lcd.write(0);   //prints a snowflake to indicate frozen
-    break;
+      lcd.write(0);   //prints a snowflake to indicate frozen
+      break;
     case false:
+      lcd.print("-");
+      break;
+  }
+}
+
+void updateEditPlan() { //updates LCD display on Mode 3 to indicate what will happen once user confirms time change plan
+
+  //Hours or Minutes?
+  if (selectedToEdit == 0) {
+    lcd.setCursor(1, 1);
+    lcd.print("Hour");
+  }
+  else {
+    lcd.setCursor(1, 1);
+    lcd.print("Min ");
+  }
+
+  //Addition or Subtraction?
+  if (selectedOperation == 0) {
+    lcd.setCursor(8, 1);
     lcd.print("-");
-    break;
+  }
+  else {
+    lcd.setCursor(8, 1);
+    lcd.print("+");
+  }
+
+  //By how much?
+  lcd.setCursor(12, 1);
+  if (loadedVal[0] != '?') {
+    lcd.print(loadedVal[0] - '0');  //print the value in loadedVal[0] as an integer
+  }
+  else {
+    lcd.print(" ");
+  }
+  lcd.setCursor(13, 1);
+  if (loadedVal[1] != '?') {
+    lcd.print(loadedVal[1] - '0');  //print the value in loadedVal[1] as an integer
+  }
+  else {
+    lcd.print(" ");
   }
 }
