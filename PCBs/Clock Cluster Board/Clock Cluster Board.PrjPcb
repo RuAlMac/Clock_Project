@@ -75,7 +75,7 @@ GenerateClassCluster=0
 DocumentUniqueId=NNXQTVOS
 
 [Document3]
-DocumentPath=temp_gerberx2.Cam
+DocumentPath=gerberX2_clock_cluster.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -92,7 +92,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document4]
-DocumentPath=temp_ncdrill.Cam
+DocumentPath=ncDrill_clock_cluster.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0

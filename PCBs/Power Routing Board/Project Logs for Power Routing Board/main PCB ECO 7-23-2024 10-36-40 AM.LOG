@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=GND Pin=Fuse-X
+Removed Pin From Net: NetName=GND Pin=Fuse-X
+Removed Pin From Net: NetName=+5V Pin=LED-1
+Removed Pin From Net: NetName=-5V Pin=LED-2
+Added Pin To Net: NetName=-5V Pin=LED-1
+Added Pin To Net: NetName=+5V Pin=LED-2

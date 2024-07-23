@@ -1,0 +1,5 @@
+Added Component: Designator=Fuse(Blade Fuse [Standard])
+Add component (AddParameter): Name = "Capacity"; Value = "20A"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5V_unfused Pin=Fuse-1
+Added Pin To Net: NetName=+5V Pin=Fuse-2
+Added Member To Class: ClassName=main Member=Component Fuse Blade Fuse

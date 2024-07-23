@@ -75,7 +75,7 @@ GenerateClassCluster=0
 DocumentUniqueId=MMKMFSLX
 
 [Document3]
-DocumentPath=temp_gerber.Cam
+DocumentPath=gerberX2_power_routing.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -92,7 +92,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document4]
-DocumentPath=temp_ncdrill.Cam
+DocumentPath=ncDrill_power_routing.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -109,74 +109,78 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for Power Routing Board\main.DRR
+DocumentPath=Project Outputs for Power Routing Board\main-RoundHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for Power Routing Board\main.EXTREP
+DocumentPath=Project Outputs for Power Routing Board\main-SlotHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for Power Routing Board\main.LDP
+DocumentPath=Project Outputs for Power Routing Board\main.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for Power Routing Board\main.REP
+DocumentPath=Project Outputs for Power Routing Board\main.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for Power Routing Board\main.RUL
+DocumentPath=Project Outputs for Power Routing Board\main.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for Power Routing Board\main.TXT
+DocumentPath=Project Outputs for Power Routing Board\main.REP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for Power Routing Board\main_Copper_Signal_Bot.gbr
+DocumentPath=Project Outputs for Power Routing Board\main.RUL
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for Power Routing Board\main_Copper_Signal_Top.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Copper_Signal_Bot.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for Power Routing Board\main_Keep-out.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Copper_Signal_Top.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for Power Routing Board\main_Legend_Top.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Keep-out.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_1.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Legend_Top.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_13.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_1.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_15.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_13.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for Power Routing Board\main_Pads_Bot.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Mechanical_15.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for Power Routing Board\main_Pads_Top.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Pads_Bot.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for Power Routing Board\main_Profile.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Pads_Top.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for Power Routing Board\main_Soldermask_Bot.gbr
+DocumentPath=Project Outputs for Power Routing Board\main_Profile.gbr
 DItemRevisionGUID=
 
 [GeneratedDocument18]
+DocumentPath=Project Outputs for Power Routing Board\main_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument19]
 DocumentPath=Project Outputs for Power Routing Board\main_Soldermask_Top.gbr
 DItemRevisionGUID=
 
