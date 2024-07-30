@@ -3,14 +3,14 @@ G04 Layer_Physical_Order=3*
 G04 Layer_Color=16440176*
 %FSLAX43Y43*%
 %MOMM*%
-%TF.SameCoordinates,3FC202D4-D6D8-4E4D-99FA-64827559B015*%
+%TF.SameCoordinates,B19F3460-6A24-425D-A3EB-0114A067EE95*%
 %TF.FilePolarity,Positive*%
 %TF.FileFunction,Copper,L3,Inr,Signal*%
 %TF.Part,Single*%
 G01*
 G75*
 %TA.AperFunction,Conductor*%
-%ADD12C,0.400*%
+%ADD13C,0.400*%
 %ADD14C,1.200*%
 %ADD15C,1.000*%
 %TA.AperFunction,ComponentPad*%
@@ -30,7 +30,7 @@ G75*
 %TA.AperFunction,ViaPad*%
 %ADD30C,1.270*%
 %ADD31C,1.800*%
-D12*
+D13*
 X45680Y36850D02*
 X47130Y38300D01*
 X37150Y36850D02*
@@ -668,5 +668,5 @@ X31600Y4450D02*
 D03*
 X12900Y42350D02*
 D03*
-%TF.MD5,9340bce12a68a4b845e1a7d1a187267d*%
+%TF.MD5,7c4367be4b33c1374df899ff7d8b2fe8*%
 M02*
