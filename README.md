@@ -24,6 +24,6 @@
 [External link] This OnShape file contains the following parts:
 
 <ul>
-  <li>Combined Clockface / Front Panel</li>
+  <li>Combined Clockface / Front Panel [Link not yet added]</li>
 </ul>
 </p>
