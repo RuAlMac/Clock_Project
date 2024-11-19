@@ -5,10 +5,10 @@
 
 <p><h3>Custom Printed Circuit Boards (PCBs)</h3>
 <ul>
-  <li>Individual Clock Board</li>
-  <li>Clock Cluster Board</li>
-  <li>Power Routing Board</li>
-  <li>Small Parts Board</li>
+  <li><strong>Individual Clock Board:</strong> 24 used, one for each analog clock (2 steppers, one for each hand)</li>
+  <li><strong>Clock Cluster Board:</strong> 4 used, one for each segment (6 clocks)>/li>
+  <li><strong>Power Routing Board:</strong> 1 used, includes fuses for distributing power safely to all steppers and microcontrollers</li>
+  <li><strong>Small Parts Board:</strong> 50 used, two per clock for hall effect sensors for steppers, more for miscellaneous components</li>
 </ul>
 </p>
 
