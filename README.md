@@ -21,9 +21,5 @@
 </p>
 
 <p><h3>3D-Printed Parts</h3>
-[External link] This OnShape file contains the following parts:
-
-<ul>
-  <li>Combined Clockface / Front Panel [Link not yet added]</li>
-</ul>
+<a href="https://cad.onshape.com/documents/1d75280899b064ab337b95c3/w/e03d29798e6817c57c79d56d/e/417be124aab67788fec76c11?renderMode=0&uiState=673cd1360316270ea49f4b93">This Onshape workspace</a> contains all the parts I designed for this project, and also includes the assembly models for the entire project.
 </p>
