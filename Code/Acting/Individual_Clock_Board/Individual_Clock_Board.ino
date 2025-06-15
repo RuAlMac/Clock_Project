@@ -28,7 +28,7 @@
 //I2C
 #include <Wire.h>
 volatile byte i2c_message = 1;  //not sure if I'm going to keep this variable
-char receivedMessage[7] = {'5', '_', '5', '5', '5', '5'}; //includes extra space for '\0' str terminator44
+char receivedMessage[7] = {'5', '_', '5', '5', '5', '5'}; //includes extra space for '\0' str terminator
 
 //Board Position
 char seg; //stores which segment this board operates in
